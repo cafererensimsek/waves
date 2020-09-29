@@ -105,6 +105,8 @@ class _LinerScreenState extends State<LinerScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         currentIndex: _selectedIndex,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) => toggleIndex(index),
         items: [
           BottomNavigationBarItem(

@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class EditWave extends StatefulWidget {
@@ -15,8 +15,9 @@ class _EditWaveState extends State<EditWave> {
   bool _isEditing = false;
   bool _isTitleVisible = true;
   String _title;
+  double _rotation = 1.0;
   final titleController = TextEditingController();
-  Offset offset = Offset(145, 360);
+  final transformationController = TransformationController();
 
   _changeTitle() {
     setState(() => _title = titleController.text);
@@ -73,6 +74,27 @@ class _EditWaveState extends State<EditWave> {
                       _isTitleVisible = true;
                     }),
                   ),
+        actions: [
+          Visibility(
+            visible: _isEditing,
+            child: FlatButton(
+              onPressed: () => setState(() {
+                _isTitleVisible = false;
+                FocusScopeNode currentFocus = FocusScope.of(context);
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+              }),
+              child: Text(
+                'Bitti',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -84,29 +106,6 @@ class _EditWaveState extends State<EditWave> {
                   widget.wavePhoto,
                 ),
               ),
-              Positioned(
-                  top: MediaQuery.of(context).size.height / 6,
-                  left: MediaQuery.of(context).size.width * 8 / 10,
-                  child: Visibility(
-                    visible: _isEditing,
-                    child: FlatButton(
-                        onPressed: () => setState(() {
-                              _isTitleVisible = false;
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            }),
-                        child: Text(
-                          'Bitti',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        )),
-                  )),
               Positioned(
                 top: MediaQuery.of(context).size.height / 3,
                 left: (MediaQuery.of(context).size.width - 150) / 2,
@@ -129,23 +128,16 @@ class _EditWaveState extends State<EditWave> {
                   ),
                 ),
               ),
-              Positioned(
-                top: offset.dy,
-                left: offset.dx,
-                child: Transform(
-                  transform: ,
-                  alignment: FractionalOffset.center,
-                                  child: GestureDetector(
-                    onPanUpdate: (details) {
-                      setState(() {
-                        offset = Offset(
-                          offset.dx + details.delta.dx,
-                          offset.dy + details.delta.dy,
-                        );
-                      });
-                    },
-                    child: Visibility(
-                      visible: _isEditing,
+              Visibility(
+                visible: _isEditing,
+                child: InteractiveViewer(
+                  transformationController: transformationController,
+                  maxScale: 10,
+                  minScale: 0.1,
+                  boundaryMargin: EdgeInsets.all(double.infinity),
+                  child: Align(
+                    child: Transform.rotate(
+                      angle: 180 / (_rotation * 10),
                       child: Container(
                         width: 150,
                         decoration: BoxDecoration(
@@ -162,6 +154,22 @@ class _EditWaveState extends State<EditWave> {
                         ),
                       ),
                     ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Visibility(
+                  visible: _isEditing,
+                  child: Slider(
+                    label: 'Rotasyon',
+                    value: _rotation,
+                    min: 1.0,
+                    max: 18.0,
+                    onChanged: (newValue) => setState(() {
+                      _rotation = newValue;
+                      print(_rotation);
+                    }),
                   ),
                 ),
               ),
