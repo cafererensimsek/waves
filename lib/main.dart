@@ -22,11 +22,11 @@ class Waves extends StatelessWidget {
       title: 'Waves',
       theme: ThemeData(
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          //type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white54,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
           showUnselectedLabels: false,
           selectedItemColor: Colors.blue,
-          elevation: 10,
+          elevation: 15,
           unselectedItemColor: Colors.black,
         ),
         appBarTheme: AppBarTheme(
@@ -105,8 +105,6 @@ class _LinerScreenState extends State<LinerScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         currentIndex: _selectedIndex,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
         onTap: (index) => toggleIndex(index),
         items: [
           BottomNavigationBarItem(
