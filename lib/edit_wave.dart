@@ -11,42 +11,52 @@ import 'widgets/title_box.dart';
 import 'widgets/title_button.dart';
 import 'widgets/wave_button.dart';
 
-class EditWave extends StatefulWidget {
+class EditWave extends StatelessWidget {
   final File wavePhoto;
 
   const EditWave(this.wavePhoto);
 
   @override
-  EditWaveState createState() => EditWaveState();
-}
-
-class EditWaveState extends State<EditWave> {
-  @override
   Widget build(BuildContext context) {
     bool isEditing = Provider.of<Wave>(context).isEditing;
-    return Scaffold(
-      backgroundColor: Colors.black,
-      extendBodyBehindAppBar: true,
-      floatingActionButton: PaylasButton(),
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.transparent,
-        centerTitle: !isEditing,
-        title: !isEditing ? WaveButton() : TitleButton(),
-        actions: [BittiButton()],
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: FileImage(wavePhoto),
+          fit: BoxFit.fill,
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: [
-              Center(
-                child: Image.file(widget.wavePhoto),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButton: PaylasButton(),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: Colors.transparent,
+          leading: Container(),
+          centerTitle: !isEditing,
+          title: !isEditing ? WaveButton() : TitleButton(),
+          actions: [BittiButton()],
+        ),
+        body: LayoutBuilder(
+          builder: (context, constraints) => SingleChildScrollView(
+            child: Container(
+              height: constraints.maxHeight,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: constraints.maxHeight / 3,
+                    left: (constraints.maxWidth - 150) / 2,
+                    child: TitleBox(),
+                  ),
+                  ContentBox(constraints.maxWidth, constraints.maxHeight),
+                  Positioned(
+                    bottom: constraints.maxHeight / 6,
+                    left: (constraints.maxWidth - 150) / 2,
+                    child: RotationBar(),
+                  ),
+                ],
               ),
-              TitleBox(context),
-              ContentBox(),
-              RotationBar(),
-            ],
+            ),
           ),
         ),
       ),

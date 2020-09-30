@@ -17,10 +17,7 @@ class BittiButton extends StatelessWidget {
           Provider.of<Wave>(context, listen: false).toggleTitleVisibility();
           Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();
 
-          FocusScopeNode currentFocus = FocusScope.of(context);
-          if (!currentFocus.hasPrimaryFocus) {
-            currentFocus.unfocus();
-          }
+          FocusScope.of(context).unfocus();
         },
         child: Text(
           'Bitti',

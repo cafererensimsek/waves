@@ -6,6 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:liner_waves/edit_wave.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspath;
+import 'package:provider/provider.dart';
+
+import 'wave_state_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -154,7 +157,15 @@ class _LinerScreenState extends State<LinerScreen> {
 
     final savedPhoto = await _storedPhoto.copy('${appDir.path}/$fileName');
 
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => EditWave(savedPhoto)));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider(
+          create: (context) => Wave(),
+          child: Builder(
+            builder: (context) => EditWave(savedPhoto),
+          ),
+        ),
+      ),
+    );
   }
 }
