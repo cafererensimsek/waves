@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:liner_waves/wave_state_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,45 +17,53 @@ class EditWave extends StatelessWidget {
 
   const EditWave(this.wavePhoto);
 
+  static GlobalKey screen = new GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     bool isEditing = Provider.of<Wave>(context).isEditing;
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: FileImage(wavePhoto),
-          fit: BoxFit.fill,
+    return RepaintBoundary(
+      key: screen,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: FileImage(wavePhoto),
+            fit: BoxFit.fill,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        floatingActionButton: PaylasButton(),
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          leading: Container(),
-          centerTitle: !isEditing,
-          title: !isEditing ? WaveButton() : TitleButton(),
-          actions: [BittiButton()],
-        ),
-        body: LayoutBuilder(
-          builder: (context, constraints) => SingleChildScrollView(
-            child: Container(
-              height: constraints.maxHeight,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: constraints.maxHeight / 3,
-                    left: (constraints.maxWidth - 150) / 2,
-                    child: TitleBox(),
-                  ),
-                  ContentBox(constraints.maxWidth, constraints.maxHeight),
-                  Positioned(
-                    bottom: constraints.maxHeight / 6,
-                    left: (constraints.maxWidth - 150) / 2,
-                    child: RotationBar(),
-                  ),
-                ],
+          floatingActionButton: Opacity(
+            opacity: Provider.of<Wave>(context).isPaylasVisible,
+            child: PaylasButton(screen),
+          ),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            iconTheme: IconThemeData(color: Colors.white),
+            backgroundColor: Colors.transparent,
+            centerTitle: !isEditing,
+            title: !isEditing ? WaveButton() : TitleButton(),
+            actions: [BittiButton()],
+          ),
+          body: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: Container(
+                height: constraints.maxHeight,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: constraints.maxHeight / 3,
+                      left: (constraints.maxWidth - 150) / 2,
+                      child: TitleBox(),
+                    ),
+                    ContentBox(constraints.maxWidth, constraints.maxHeight),
+                    Positioned(
+                      bottom: constraints.maxHeight / 6,
+                      left: (constraints.maxWidth - 150) / 2,
+                      child: RotationBar(),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
