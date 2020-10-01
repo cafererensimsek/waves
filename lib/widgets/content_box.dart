@@ -15,7 +15,9 @@ class ContentBox extends StatelessWidget {
         maxScale: 10,
         minScale: 0.1,
         boundaryMargin: EdgeInsets.symmetric(
-            horizontal: horizontal / 3, vertical: vertical / 3),
+          horizontal: horizontal / 3,
+          vertical: vertical / 3,
+        ),
         child: Align(
           child: Transform.rotate(
             angle: Provider.of<Wave>(context).rotation,

@@ -21,9 +21,9 @@ class Wave with ChangeNotifier {
   bool get isTitleVisible => _isTitleVisible;
   bool get isBittiVisible => _isBittiVisible;
   bool get isSlideBarVisible => _isSlideBarVisible;
-
-  String get title => _title;
   double get isPaylasVisible => _isPaylasVisible;
+  String get title => _title;
+
   double get rotation => _rotation;
   TextEditingController get titleController {
     _titleController.addListener(() => _title = _titleController.text);

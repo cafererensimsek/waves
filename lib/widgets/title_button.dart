@@ -16,9 +16,10 @@ class TitleButton extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         onPressed: () {
-          Provider.of<Wave>(context, listen: false).toggleEditStatus();
           Provider.of<Wave>(context, listen: false).toggleTitleVisibility();
-          Provider.of<Wave>(context, listen: false).resetRotation();
+          Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();
+          Provider.of<Wave>(context, listen: false).toggleBittiVisibility();
+          Provider.of<Wave>(context, listen: false).opacity = 0.0;
         },
       ),
     );

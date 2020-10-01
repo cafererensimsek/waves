@@ -10,7 +10,6 @@ class RotationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isEditing = Provider.of<Wave>(context).isEditing;
     bool isSlideBarVisible = Provider.of<Wave>(context).isSlideBarVisible;
-    double rotation = Provider.of<Wave>(context).rotation;
     return Visibility(
       visible: isEditing && isSlideBarVisible,
       child: Container(
@@ -18,11 +17,10 @@ class RotationBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(25),
           color: Colors.white.withOpacity(0.5),
         ),
-        width: 150,
+        width: MediaQuery.of(context).size.width,
         child: Slider(
-          value: rotation,
-          label: 'Döndür',
-          min: 0.0,
+          value: Provider.of<Wave>(context).rotation,
+          min: -2 * pi,
           max: 2 * pi,
           onChanged: (newValue) =>
               Provider.of<Wave>(context, listen: false).setRotation(newValue),

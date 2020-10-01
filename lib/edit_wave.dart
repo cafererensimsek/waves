@@ -33,10 +33,7 @@ class EditWave extends StatelessWidget {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          floatingActionButton: Opacity(
-            opacity: Provider.of<Wave>(context).isPaylasVisible,
-            child: PaylasButton(screen),
-          ),
+          floatingActionButton: PaylasButton(screen),
           appBar: AppBar(
             automaticallyImplyLeading: false,
             iconTheme: IconThemeData(color: Colors.white),
@@ -59,7 +56,6 @@ class EditWave extends StatelessWidget {
                     ContentBox(constraints.maxWidth, constraints.maxHeight),
                     Positioned(
                       bottom: constraints.maxHeight / 6,
-                      left: (constraints.maxWidth - 150) / 2,
                       child: RotationBar(),
                     ),
                   ],
