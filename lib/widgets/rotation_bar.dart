@@ -23,7 +23,7 @@ class RotationBar extends StatelessWidget {
           min: -2 * pi,
           max: 2 * pi,
           onChanged: (newValue) =>
-              Provider.of<Wave>(context, listen: false).setRotation(newValue),
+              Provider.of<Wave>(context, listen: false).setRotation = newValue,
         ),
       ),
     );

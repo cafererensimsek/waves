@@ -20,6 +20,7 @@ class ContentBox extends StatelessWidget {
         ),
         child: Align(
           child: Transform.rotate(
+            // the rotation is controlled by the slidebar
             angle: Provider.of<Wave>(context).rotation,
             child: Container(
               width: 150,

@@ -9,6 +9,7 @@ class WaveButton extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.waves, size: 30),
       onPressed: () {
+        // start editing
         Provider.of<Wave>(context, listen: false).toggleEditStatus();
         Provider.of<Wave>(context, listen: false).toggleBittiVisibility();
         Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();

@@ -28,7 +28,7 @@ class EditWave extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: FileImage(wavePhoto),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         child: Scaffold(

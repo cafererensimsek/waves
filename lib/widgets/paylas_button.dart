@@ -17,10 +17,16 @@ class PaylasButton extends StatelessWidget {
       child: FloatingActionButton.extended(
         backgroundColor: Colors.white,
         onPressed: () async {
+          // unfocus the current focus so that the
+          // cursor won't be in the screenshot
+          FocusScope.of(context).unfocus();
+          // set the opacity of the FAB to zero
           Provider.of<Wave>(context, listen: false).opacity = 0.0;
           await Future.delayed(Duration(milliseconds: 20));
+          // take the screenshot and save it to a File
           File wave = await Provider.of<Wave>(context, listen: false)
               .createWave(context, screen);
+          // navigate to main screen and send the wave with it
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                 builder: (context) => LinerScreen(wave: wave),

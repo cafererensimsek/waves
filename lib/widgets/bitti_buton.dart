@@ -13,6 +13,8 @@ class BittiButton extends StatelessWidget {
       visible: isEditing && isBittiVisible,
       child: FlatButton(
         onPressed: () {
+          // make the sliderbar, bitti button, invisible and
+          // the title and fab visible
           Provider.of<Wave>(context, listen: false).toggleBittiVisibility();
           Provider.of<Wave>(context, listen: false).toggleTitleVisibility();
           Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();

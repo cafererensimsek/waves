@@ -55,13 +55,8 @@ class Wave with ChangeNotifier {
     notifyListeners();
   }
 
-  void setRotation(double newRotation) {
+  set setRotation(double newRotation) {
     _rotation = newRotation;
-    notifyListeners();
-  }
-
-  void resetRotation() {
-    _rotation = 0;
     notifyListeners();
   }
 

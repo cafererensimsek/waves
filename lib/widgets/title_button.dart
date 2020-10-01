@@ -16,6 +16,7 @@ class TitleButton extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         onPressed: () {
+          // enable editing and disable sharing again
           Provider.of<Wave>(context, listen: false).toggleTitleVisibility();
           Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();
           Provider.of<Wave>(context, listen: false).toggleBittiVisibility();
