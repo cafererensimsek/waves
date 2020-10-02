@@ -8,7 +8,7 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'wave_state_provider.dart';
+import 'providers/wave_state_provider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(

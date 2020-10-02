@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../wave_state_provider.dart';
+import '../providers/wave_state_provider.dart';
 
 class RotationBar extends StatelessWidget {
   @override
@@ -13,15 +13,11 @@ class RotationBar extends StatelessWidget {
     return Visibility(
       visible: isEditing && isSlideBarVisible,
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.white.withOpacity(0.5),
-        ),
         width: MediaQuery.of(context).size.width,
         child: Slider(
           value: Provider.of<Wave>(context).rotation,
-          min: -2 * pi,
-          max: 2 * pi,
+          min: -pi / 2,
+          max: pi / 2,
           onChanged: (newValue) =>
               Provider.of<Wave>(context, listen: false).setRotation = newValue,
         ),

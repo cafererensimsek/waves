@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../wave_state_provider.dart';
+import '../providers/wave_state_provider.dart';
 
 class ContentBox extends StatelessWidget {
   final double horizontal;

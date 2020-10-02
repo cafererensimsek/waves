@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:liner_waves/main.dart';
 import 'package:provider/provider.dart';
-import 'package:liner_waves/wave_state_provider.dart';
+import 'package:liner_waves/providers/wave_state_provider.dart';
 
 class PaylasButton extends StatelessWidget {
   final GlobalKey screen;
