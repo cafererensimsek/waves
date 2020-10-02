@@ -11,7 +11,6 @@ class WaveButton extends StatelessWidget {
       onPressed: () {
         // start editing
         Provider.of<Wave>(context, listen: false).toggleEditStatus();
-        Provider.of<Wave>(context, listen: false).toggleBittiVisibility();
         Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();
       },
     );

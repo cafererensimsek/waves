@@ -4,12 +4,10 @@ import 'package:flutter/rendering.dart';
 import 'package:liner_waves/wave_state_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/bitti_buton.dart';
 import 'widgets/content_box.dart';
 import 'widgets/paylas_button.dart';
 import 'widgets/rotation_bar.dart';
-import 'widgets/title_box.dart';
-import 'widgets/title_button.dart';
+import 'widgets/title.dart';
 import 'widgets/wave_button.dart';
 
 class EditWave extends StatelessWidget {
@@ -39,8 +37,7 @@ class EditWave extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.transparent,
             centerTitle: !isEditing,
-            title: !isEditing ? WaveButton() : TitleButton(),
-            actions: [BittiButton()],
+            title: !isEditing ? WaveButton() : WaveTitle(),
           ),
           body: LayoutBuilder(
             builder: (context, constraints) => SingleChildScrollView(
@@ -48,11 +45,6 @@ class EditWave extends StatelessWidget {
                 height: constraints.maxHeight,
                 child: Stack(
                   children: [
-                    Positioned(
-                      top: constraints.maxHeight / 3,
-                      left: (constraints.maxWidth - 150) / 2,
-                      child: TitleBox(),
-                    ),
                     ContentBox(constraints.maxWidth, constraints.maxHeight),
                     Positioned(
                       bottom: constraints.maxHeight / 6,

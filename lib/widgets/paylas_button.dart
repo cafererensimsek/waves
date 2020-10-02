@@ -20,6 +20,7 @@ class PaylasButton extends StatelessWidget {
           // unfocus the current focus so that the
           // cursor won't be in the screenshot
           FocusScope.of(context).unfocus();
+          Provider.of<Wave>(context, listen: false).toggleSlideBarVisibility();
           // set the opacity of the FAB to zero
           Provider.of<Wave>(context, listen: false).opacity = 0.0;
           await Future.delayed(Duration(milliseconds: 20));

@@ -8,27 +8,14 @@ import 'package:path_provider/path_provider.dart';
 
 class Wave with ChangeNotifier {
   bool _isEditing = false;
-  bool _isTitleVisible = false;
-  bool _isBittiVisible = false;
   bool _isSlideBarVisible = false;
-  double _isPaylasVisible = 0.0;
-  String _title = "";
+  double _isPaylasVisible = 1.0;
   double _rotation = 0.0;
 
-  final _titleController = TextEditingController();
-
   bool get isEditing => _isEditing;
-  bool get isTitleVisible => _isTitleVisible;
-  bool get isBittiVisible => _isBittiVisible;
   bool get isSlideBarVisible => _isSlideBarVisible;
   double get isPaylasVisible => _isPaylasVisible;
-  String get title => _title;
-
   double get rotation => _rotation;
-  TextEditingController get titleController {
-    _titleController.addListener(() => _title = _titleController.text);
-    return _titleController;
-  }
 
   set opacity(double opacity) {
     _isPaylasVisible = opacity;
@@ -37,16 +24,6 @@ class Wave with ChangeNotifier {
 
   void toggleEditStatus() {
     _isEditing = !_isEditing;
-    notifyListeners();
-  }
-
-  void toggleTitleVisibility() {
-    _isTitleVisible = !_isTitleVisible;
-    notifyListeners();
-  }
-
-  void toggleBittiVisibility() {
-    _isBittiVisible = !_isBittiVisible;
     notifyListeners();
   }
 
